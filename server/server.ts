@@ -4,7 +4,9 @@ import dotenv from 'dotenv'
 import connectDB from './config/db'
 import auth from './routes/authRoutes'
 import reset from './routes/resetPassRoutes'
+import clientRoutes from './routes/clientRoutes'
 import cookieParser from 'cookie-parser'
+
 const app = express()
 const port = 5000;
 
@@ -22,6 +24,7 @@ app.use(cors({
 
 app.use('/auth' , auth)
 app.use('/reset' , reset)
+app.use('/client', clientRoutes)
 
 
  connectDB();
