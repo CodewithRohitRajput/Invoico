@@ -16,7 +16,6 @@ app.use(express.json())
 app.use(cookieParser())
 
 app.use(cors({
-
     origin : ["http://localhost:3000"],
     credentials : true
 }
@@ -29,10 +28,9 @@ app.use('/client', clientRoutes)
 app.use('/invoice', invoiceCreate)
 app.use('/list-client' , allClientRoute )
 
-
- connectDB();
+connectDB();
 
 app.listen(port , ()=>{
-    console.log(`server is running on ${port}`)
+    console.log(`Server is running on ${port}`)
 })
 
