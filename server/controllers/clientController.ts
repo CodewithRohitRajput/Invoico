@@ -7,7 +7,7 @@ import User from '../models/auth'
 dotenv.config()
 const SECRET = process.env.SECRET
 if(!SECRET){
-    throw new Error("SECRET is not present in the .env file")
+    throw new Error("SECRET is not present in the env file")
 }
 export const client = async  (req : Request , res : Response) => {
     const {name , email , phone , address} = req.body;
