@@ -6,6 +6,7 @@ import auth from './routes/authRoutes'
 import reset from './routes/resetPassRoutes'
 import clientRoutes from './routes/clientRoutes'
 import cookieParser from 'cookie-parser'
+import { InvoiceCreate } from './controllers/InvoiceController'
 
 const app = express()
 const port = 5000;
@@ -25,6 +26,7 @@ app.use(cors({
 app.use('/auth' , auth)
 app.use('/reset' , reset)
 app.use('/client', clientRoutes)
+app.use('/create-invoice', InvoiceCreate)
 
 
  connectDB();
