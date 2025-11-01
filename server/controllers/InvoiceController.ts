@@ -15,12 +15,15 @@ export const InvoiceCreate = async (req : Request , res : Response) => {
     const {clientId , items , totalAmount, status , dueDate , notes} = req.body;
 
     const token = req.cookies.token
-    const decoded = jwt.verify(token , SECRET as string) as 
-    {UserId  : string}
+    const decoded = jwt.verify(token , SECRET as string) as {userId  : string}
+
+    const count = await invoice.countDocuments();
+    const invoiceNumber = `INV-${Date.now()}-${count + 1}`
 
     const NewInvoice = new invoice({
-        userId : decoded.UserId,
+        userId : decoded.userId,
         clientId,
+        invoiceNumber,
         items,
         totalAmount,
         issueDate : Date.now(),
