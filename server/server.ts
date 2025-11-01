@@ -31,6 +31,7 @@ app.use('/list-client' , allClientRoute )
 connectDB();
 
 app.listen(port , ()=>{
-    console.log(`Server is running on ${port}`)
+    console.log(`Server is running on ${port}`);
+    console.log("Welcome to the server!")
 })
 
