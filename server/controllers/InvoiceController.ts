@@ -37,5 +37,15 @@ return res.status(200).json({message : "Invoice is saved"})
 };
 
 
+export const getInvoice = async (req :Request , res : Response) =>{
+    const token = req.cookies.token;
+    if(!token) return res.status(401).json({message : "No Token found"})
+        const decoded = await jwt.verify(token , SECRET as string) as {userId : string};
+    if(!decoded) return res.status(401).json({message : "Sorry, We are not able to find the user"})
+        const allInvoice = await invoice.find({userId : decoded.userId}).populate('clientId')
+    return res.status(200).json({allInvoice});
+}
+
+
 
 

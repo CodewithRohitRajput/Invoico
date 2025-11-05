@@ -69,11 +69,16 @@ export const loginUser = async (req : Request , res : Response) => {
 
 
 export const profile = async (req : Request , res : Response) => {
-    const token = req.cookies.token
-    if(!token) return res.status(400).json({message : "Token not available"})
-    const decoded = jwt.verify(token , SECRET as string) as {userId : string};
-    if(!decoded) return res.status(400).json({Message : "Invalid Token"})
-    const user = await User.findById(decoded.userId);
-    return res.status(200).json(user);
+    try{
+
+        const token = req.cookies.token
+        if(!token) return res.status(400).json({message : "Token not available" , isLogedIn : false})
+            const decoded = jwt.verify(token , SECRET as string) as {userId : string};
+        if(!decoded) return res.status(400).json({Message : "Invalid Token" , isLogedIn : false})
+            const user = await User.findById(decoded.userId);
+        return res.status(200).json({ name : user?.name ,email : user?.email , plan : user?.plan , isLogedIn : true});
+    }catch(err){
+        return res.status(500).json({message :"Server Issue" , isLogedIn : false})
+    }
 }
 

@@ -9,15 +9,17 @@ export default function Profile() {
   const [plan, setPlan] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(true);
   const [resetLoading, setResetLoading] = useState<boolean>(false);
+  const[isLogedIn , setIsLogedIn] = useState<boolean>(false)
 
   useEffect(() => {
     const getInfo = async () => {
       try {
         const res = await fetch(`http://localhost:5000/auth/profile`, { credentials: 'include' })
         const data = await res.json();
+        setIsLogedIn(data.isLogedIn)
         setUsername(data.name)
         setEmail(data.email)
-        setPlan(data.plan)
+        setPlan(data.plan || 'Login')
       } catch (error) {
         console.error('Error fetching profile:', error);
       } finally {
@@ -120,7 +122,8 @@ export default function Profile() {
               {/* Plan Badge */}
               <div className={`inline-flex items-center gap-2 px-4 py-2 rounded-full ${getPlanColor(plan)} font-semibold text-sm shadow-lg`}>
                 {getPlanIcon(plan)}
-                {plan || 'Free'} Plan
+                {isLogedIn ? <>{plan || 'Free'} Plan </> : <>LogIn to see plan</>}
+                
               </div>
             </div>
 

@@ -89,8 +89,8 @@ export default function CreateInvoice() {
                                 <label className="block text-sm font-medium text-gray-700 mb-2">
                                     Client
                                 </label>
-                               <select value={clientId} onChange={e=>setClientId(e.target.value)}>
-                                <option value="">Select a client</option>
+                               <select className="text-black" value={clientId} onChange={e=>setClientId(e.target.value)}>
+                                <option value="" className="text-black">Select a client</option>
                                     {clients.map((c,i)=>(
                                     <option key={c._id} value={c._id}>
                                         {c.name} - {c.email}
@@ -112,7 +112,7 @@ export default function CreateInvoice() {
                                     placeholder="Enter Client ID"
                                     value={clientId}
                                     onChange={e => setClientId(e.target.value)}
-                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition duration-200"
+                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition duration-200 placeholder:text-gray-500 text-black"
                                     required
                                 />
                             </div>
@@ -160,7 +160,7 @@ export default function CreateInvoice() {
                                                 placeholder="Item description"
                                                 value={item.description}
                                                 onChange={e => updateItem(index, 'description', e.target.value)}
-                                                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition duration-200"
+                                                className="placeholder:text-gray-500 text-black w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition duration-200 placeholder:text-gray-500 text-black"
                                             />
                                         </div>
                                         <div>
@@ -170,7 +170,7 @@ export default function CreateInvoice() {
                                                 placeholder="0"
                                                 value={item.quantity}
                                                 onChange={e => updateItem(index, 'quantity', e.target.value)}
-                                                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition duration-200"
+                                                className="placeholder:text-gray-500 text-black w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition duration-200 placeholder:text-gray-500 text-black"
                                                 min="0"
                                                 step="1"
                                             />
@@ -182,7 +182,7 @@ export default function CreateInvoice() {
                                                 placeholder="0.00"
                                                 value={item.price}
                                                 onChange={e => updateItem(index, 'price', e.target.value)}
-                                                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition duration-200"
+                                                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition duration-200 placeholder:text-gray-500 text-black"
                                                 min="0"
                                                 step="0.01"
                                             />
@@ -193,7 +193,7 @@ export default function CreateInvoice() {
                                                 type="text"
                                                 value={`$${item.total}`}
                                                 readOnly
-                                                className="w-full px-3 py-2 border border-gray-300 bg-gray-100 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition duration-200"
+                                                className="w-full px-3 py-2 border border-gray-300 bg-gray-100 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition duration-200 placeholder:text-gray-500 text-black"
                                             />
                                         </div>
                                     </div>
@@ -215,7 +215,7 @@ export default function CreateInvoice() {
                                     placeholder="0.00"
                                     value={totalAmount}
                                     onChange={e => setTotalAmount(e.target.value)}
-                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition duration-200"
+                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition duration-200 placeholder:text-gray-500 text-black"
                                     required
                                 />
                             </div>
@@ -226,7 +226,7 @@ export default function CreateInvoice() {
                                 <select
                                     value={status}
                                     onChange={e => setStatus(e.target.value)}
-                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition duration-200"
+                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition duration-200 placeholder:text-gray-500 text-black"
                                 >
                                     <option value="Unpaid">Unpaid</option>
                                     <option value="Paid">Paid</option>
@@ -241,7 +241,7 @@ export default function CreateInvoice() {
                                     type="date"
                                     value={dueDate}
                                     onChange={e => setDueDate(e.target.value)}
-                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition duration-200"
+                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition duration-200 placeholder:text-gray-500 text-black"
                                     required
                                 />
                             </div>
@@ -258,7 +258,7 @@ export default function CreateInvoice() {
                             value={notes}
                             onChange={e => setNotes(e.target.value)}
                             rows={4}
-                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition duration-200 resize-none"
+                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition duration-200 resize-none placeholder:text-gray-500 text-black"
                         />
                     </div>
 

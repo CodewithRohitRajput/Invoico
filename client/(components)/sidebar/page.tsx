@@ -3,9 +3,10 @@
 import { useEffect, useState } from "react";
 
 export default function Sidebar() {
-  const [isCollapsed, setIsCollapsed] = useState(false);
+  const [isCollapsed, setIsCollapsed] = useState<boolean>(false);
   const[name , setName] = useState<string>('')
   const[email , setEmail] = useState<string>('')
+  const[isLogedIn, setIsLogedIn] =useState<boolean>(false)
 
 const menuItems = [
     { 
@@ -18,8 +19,8 @@ const menuItems = [
       )
     },
     { 
-      name: "Invoices", 
-      href: "/Invoice",
+      name: "Add Invoices", 
+      href: "/add-invoice",
       icon: (
         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
@@ -74,6 +75,7 @@ const menuItems = [
       const data = await res.json();
       setName(data.name)
       setEmail(data.email)
+      setIsLogedIn(data.isLogedIn)
     }
    getUserDetail()
   } , [])
@@ -87,7 +89,8 @@ const menuItems = [
      <div className={` left-0 right-0 p-4 border-t border-gray-100 ${isCollapsed ? 'text-center' : ''}`}>
         <div className="flex items-center space-x-3">
           <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-purple-600 rounded-full flex items-center justify-center text-white font-semibold">
-            {name[0].toUpperCase()}
+            {isLogedIn ? <> {name[0].toUpperCase()}</> : <>U</>}
+           
           </div>
           {!isCollapsed && (
             <div className="flex-1 min-w-0">
@@ -128,15 +131,13 @@ const menuItems = [
               isCollapsed ? 'justify-center' : ''
             }`}
           >
-            <span className="text-xl">{item.icon}</span>
-            {!isCollapsed && (
-              <span className="ml-3 font-medium">{item.name}</span>
+            {/* <span className="text-xl">{item.icon}</span> */}
+            {!isCollapsed ? (
+              <div className="flex gap-3 items-center justify-center  ml-3 font-medium"> <span>{item.icon}</span> <span>{item.name}</span> </div>
+            ) : (
+              <span>{item.icon}</span>
             )}
-            {isCollapsed && (
-              <div className="absolute left-full ml-2 px-2 py-1 bg-gray-900 text-white text-sm rounded opacity-0 group-hover:opacity-100 transition duration-200 whitespace-nowrap z-50">
-                {item.name}
-              </div>
-            )}
+            
           </a>
         ))}
       </nav>
