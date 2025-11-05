@@ -8,6 +8,7 @@ import clientRoutes from './routes/clientRoutes'
 import cookieParser from 'cookie-parser'
 import invoiceCreate from './routes/invoiceRoutes'
 import  allClientRoute from './routes/allClientRoute'
+import nodemailerRoute from './routes/nodemailerRoute'
 const app = express()
 const port = 5000;
 
@@ -28,6 +29,7 @@ app.use('/reset' , reset)
 app.use('/client', clientRoutes)
 app.use('/invoice', invoiceCreate)
 app.use('/list-client' , allClientRoute )
+app.use('/email' , nodemailerRoute)
 
 
  connectDB();

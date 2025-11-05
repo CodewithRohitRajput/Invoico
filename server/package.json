@@ -28,10 +28,12 @@
     "express": "^5.1.0",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.19.1",
+    "nodemailer": "^7.0.10",
     "typescript": "^5.9.3"
   },
   "devDependencies": {
     "@types/node": "^24.8.1",
+    "@types/nodemailer": "^7.0.3",
     "ts-node": "^10.9.2"
   }
 }
