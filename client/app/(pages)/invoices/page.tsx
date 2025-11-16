@@ -50,6 +50,15 @@ const[invoices , setInvoices] = useState<Invoice[]>([])
             : 'bg-yellow-100 text-yellow-800';
     }
 
+        const sendEmail = async (invoiceId : string) => {
+        const res = await fetch(`http://localhost:5000/email/toClient` , {
+            method : "POST",
+            credentials : "include",
+            headers : {"Content-Type" : "application/json"},
+            body : JSON.stringify({invoiceId})
+        })
+    }
+
 return (
     <div className="min-h-screen bg-gray-50 p-8">
         <div className="max-w-7xl mx-auto">
@@ -147,11 +156,14 @@ return (
 
                                 {/* Actions */}
                                 <div className="flex gap-3">
-                                    <button className="flex-1 bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition duration-200 text-sm font-medium">
+                                    <button onClick={()=> window.location.href=`/invoices/${invoice._id}` } className="flex-1 bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition duration-200 text-sm font-medium">
                                         View Details
                                     </button>
                                     <button className="flex-1 border border-gray-300 text-gray-700 py-2 px-4 rounded-lg hover:bg-gray-50 transition duration-200 text-sm font-medium">
                                         Download PDF
+                                    </button>
+                                    <button onClick={()=>sendEmail(invoice._id)} className="flex-1 border border-gray-300 text-gray-700 py-2 px-4 rounded-lg hover:bg-gray-50 transition duration-200 text-sm font-medium">
+                                        Send Email
                                     </button>
                                 </div>
                             </div>
